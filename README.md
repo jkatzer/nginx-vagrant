@@ -19,3 +19,6 @@ directory.
 
 *Note if you use https you'll get a security warning since nginx is using a self-signed cert.*
 
+#### Further reading
+You can find more information on Vagrant and how to use it at [http://docs.vagrantup.com/v2/](http://docs.vagrantup.com/v2/)
+
