@@ -45,20 +45,24 @@ fi
 mkdir "$sites_available"
 mkdir "$sites_enabled"
 
+# Copy the nginx conf and site conf to the nginx config dir
 cp "$v_nginx_config" "$nginx_config"
 
 cp "$v_nginx_devsite" "$sites_available"/"$nginx_devsite_name"
 ln -s "$sites_available"/"$nginx_devsite_name" "$sites_enabled"/"$nginx_devsite_name"
 
+# Copy over the self signed cert and key
 if [ ! -d "$ssl_path" ]; then
 	mkdir "$ssl_path"
 fi
 
 cp "$v_ssl_path"/* "$ssl_path"/
 
+# Link 
 rm -rf "$www_path"
 ln -s "$v_www_path" "$www_path"
 
+# Make sure our synced log path exists
 mkdir -p "$v_log_path"
 
 # Start nginx
