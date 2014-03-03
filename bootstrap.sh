@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 # Install junk
-apt-get update
+apt-get -y update
+apt-get install -y python-software-properties
+apt-get install -y software-properties-common
+add-apt-repository ppa:nginx/stable
+apt-get -y update
 apt-get install -y nginx
 
 
@@ -19,8 +23,8 @@ nginx_devsite_name="dev"
 ssl_path="/etc/nginx/ssl"
 v_ssl_path="/vagrant/nginx/ssl"
 
-www_path="/usr/share/nginx/www"
-v_www_path="/vagrant/www"
+www_path="/usr/share/nginx/html"
+v_www_path="/vagrant/html"
 
 v_log_path="/vagrant/log/nginx"
 
@@ -58,7 +62,7 @@ fi
 
 cp "$v_ssl_path"/* "$ssl_path"/
 
-# Link 
+# Link
 rm -rf "$www_path"
 ln -s "$v_www_path" "$www_path"
 
@@ -67,4 +71,4 @@ mkdir -p "$v_log_path"
 
 # Start nginx
 nginx -s stop
-nginx 
+nginx
